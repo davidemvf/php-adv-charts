@@ -28,9 +28,14 @@
 
   </head>
   <body>
-    <h1>Ciao</h1>
+    <h1>Step 1</h1>
     <div class="container">
       <canvas id="salesChart"></canvas>
+    </div>
+    <h1>Step 2</h1>
+    <div class="container">
+      <canvas id="salesChartTwo"></canvas>
+      <canvas id="salesChartTie"></canvas>
 
     </div>
   </body>
