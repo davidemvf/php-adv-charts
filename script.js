@@ -59,7 +59,7 @@ function printChartTwo() {
       console.log("Dati: " + data);
       // variabili per il diagramma a torta
       var fatPerAgent = data.fatturato_by_agent;
-      var type = data.fatturato_by_agent.type;
+      var type = fatPerAgent.type;
       var dati = fatPerAgent.data;
       var labels = Object.keys(dati);
       var sales = Object.values(dati);
@@ -73,12 +73,6 @@ function printChartTwo() {
       getChartTwo(typeGraph, data);
       getTieChart(labels,type,sales);
 
-
-
-
-
-      // funzione per ricavare i labels
-      // getSaleMen(dati);
     },
     error: function() {
       alert("Errore");
