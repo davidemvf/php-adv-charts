@@ -49,4 +49,3 @@ function getLabels() {
   return(mesi);
   console.log(mesi);
 }
-getLabels();

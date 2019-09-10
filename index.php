@@ -26,12 +26,11 @@
 
     <title>Chart</title>
 
-    <title></title>
   </head>
   <body>
     <h1>Ciao</h1>
     <div class="container">
-      <canvas id="salesChart" width="400" height="400"></canvas>
+      <canvas id="salesChart"></canvas>
 
     </div>
   </body>

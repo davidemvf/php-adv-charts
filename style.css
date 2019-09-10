@@ -1,3 +1,9 @@
 h1 {
-  color: red;
+  color: green;
+}
+
+.container {
+  width: 60%;
+  height: 300px;
+  margin: 0 auto;
 }
