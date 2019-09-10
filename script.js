@@ -57,18 +57,19 @@ function printChartTwo() {
     method:"GET",
     success: function(data) {
       console.log("Dati: " + data);
-      // variabili per il diagramma tipo line
+      // variabili per il diagramma a torta
       var fatPerAgent = data.fatturato_by_agent;
       var type = data.fatturato_by_agent.type;
       var dati = fatPerAgent.data;
       var labels = Object.keys(dati);
       var sales = Object.values(dati);
+      //variabili per il diagramma tipo line
       var fatturato = data.fatturato;
       var typeGraph = fatturato.type;
       var data = fatturato.data;
-      // var fatPerAgent = data.fatturato_by_agent;
 
-      // funzione per richiamare il diagramma tipo line
+
+
       getChartTwo(typeGraph, data);
       getTieChart(labels,type,sales);
 
@@ -100,7 +101,7 @@ function getChartTwo(typeGraph, data) {
     },
 });
 }
-
+// funzione per richiamare il grafico a torta
 function getTieChart (labels, type, data) {
   var ctx = document.getElementById('salesChartTie').getContext('2d');
   var myLineChart = new Chart(ctx, {
