@@ -4,8 +4,10 @@ function init() {
   console.log("hello world");
   printChart();
   printChartTwo();
+  printChartThree();
 };
 
+// Primo step
 // funzione per implementare il grafico
 function printChart() {
   // devo ricavare i parametri da passargli
@@ -49,8 +51,12 @@ function getLabels() {
   var mesi = moment.months();
   return(mesi);
   console.log(mesi);
-}
+};
 
+
+
+// secondo step
+// funzione che implementa i due grafici
 function printChartTwo() {
   $.ajax({
     url:"apiDue.php",
@@ -80,6 +86,7 @@ function printChartTwo() {
   })
 };
 
+// funzione che implementa il grafi tipo line
 function getChartTwo(typeGraph, data) {
   var ctx = document.getElementById('salesChartTwo').getContext('2d');
   var myLineChart = new Chart(ctx, {
@@ -94,7 +101,8 @@ function getChartTwo(typeGraph, data) {
         }]
     },
 });
-}
+};
+
 // funzione per richiamare il grafico a torta
 function getTieChart (labels, type, data) {
   var ctx = document.getElementById('salesChartTie').getContext('2d');
@@ -115,4 +123,37 @@ function getTieChart (labels, type, data) {
         }]
     },
 });
+};
+
+
+
+// terzo step
+// funzione che implementa i tre grafici
+function printChartThree() {
+
+
+  getLineChart();
+}
+
+// funzione per inserire il diagramma tipo line
+function getLineChart() {
+  // chiamata ajax per recuperare dati
+  $.ajax({
+    url: "apiTre.php",
+    method: "GET",
+    data: {"level": "clevel"},
+    success: function(data) {
+      console.log(data);
+      // console.log(data.fatturato);
+      // printFirstLine(data);
+
+    },
+    error: function() {
+      alert("Errore");
+    }
+  });
+};
+
+function printFirstLine() {
+
 }

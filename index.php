@@ -36,6 +36,10 @@
     <div class="container">
       <canvas id="salesChartTwo"></canvas>
       <canvas id="salesChartTie"></canvas>
+    </div>
+    <h1>Step 3</h1>
+    <div class="container">
+
 
     </div>
   </body>
