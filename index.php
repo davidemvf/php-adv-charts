@@ -46,8 +46,11 @@
         <option value="clevel">Clevel</option>
       </select>
       <button class="button" type="button" name="button">Invia</button>
+    <div class="threeChart">
       <canvas id="line"></canvas>
       <canvas id="pie"></canvas>
+      <canvas id="multiline"></canvas>
+    </div>
 
     </div>
   </body>

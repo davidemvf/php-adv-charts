@@ -130,13 +130,18 @@ function getTieChart (labels, type, data) {
 // terzo step
 // funzione che implementa i tre grafici
 function printChartThree() {
+  
   var level = $(".level").val();
   console.log(level);
   if (level === "guest") {
     getLineChart(level);
   } else if (level === "employee") {
-    getLineChart(level);
-    getPieChart(level);
+      getLineChart(level);
+      getPieChart(level);
+  } else if (level === "clevel") {
+      getLineChart(level);
+      getPieChart(level);
+      getMultiLine(level);
   }
 
 }
@@ -211,3 +216,49 @@ function getPieChart(level) {
     }
   })
 };
+
+function getMultiLine(level) {
+  $.ajax ({
+    url: "apiTre.php",
+    method: "GET",
+    data: {"level": level },
+    success: function(data) {
+      console.log(data);
+    var team_efficiency = data.team_efficiency;
+    var type = team_efficiency.type;
+    var database = team_efficiency.data;
+    var team1 = database.Team1;
+    var team2 = database.Team2;
+    var team3 = database.Team3;
+      var ctx = document.getElementById('multiline').getContext('2d');
+      var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: getLabels(),
+            datasets: [{
+                label: 'Team 1',
+                borderColor: 'blue',
+                data: team1
+                },
+                {
+                label: 'Team 2',
+                borderColor: 'red',
+                data: team2
+              },
+              {
+              label: 'Team 3',
+              borderColor: 'green',
+              data: team3
+            }
+          ]
+        },
+    });
+
+    },
+    error: function() {
+      alert("Errore");
+    }
+  })
+
+
+}
