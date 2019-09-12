@@ -36,10 +36,18 @@
     <div class="container">
       <canvas id="salesChartTwo"></canvas>
       <canvas id="salesChartTie"></canvas>
-    </div>
-    <h1>Step 3</h1>
-    <div class="container">
+      <h1>Step 3</h1>
 
+
+
+      <select class="level" name="">
+        <option value="guest">Guest</option>
+        <option value="employee">Employee</option>
+        <option value="clevel">Clevel</option>
+      </select>
+      <button class="button" type="button" name="button">Invia</button>
+      <canvas id="line"></canvas>
+      <canvas id="pie"></canvas>
 
     </div>
   </body>

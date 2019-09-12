@@ -4,7 +4,7 @@ function init() {
   console.log("hello world");
   printChart();
   printChartTwo();
-  printChartThree();
+  $(".button").click(printChartThree);
 };
 
 // Primo step
@@ -130,22 +130,42 @@ function getTieChart (labels, type, data) {
 // terzo step
 // funzione che implementa i tre grafici
 function printChartThree() {
+  var level = $(".level").val();
+  console.log(level);
+  if (level === "guest") {
+    getLineChart(level);
+  } else if (level === "employee") {
+    getLineChart(level);
+    getPieChart(level);
+  }
 
-
-  getLineChart();
 }
 
 // funzione per inserire il diagramma tipo line
-function getLineChart() {
+function getLineChart(level) {
+
   // chiamata ajax per recuperare dati
   $.ajax({
     url: "apiTre.php",
     method: "GET",
-    data: {"level": "clevel"},
+    data: {"level": level },
     success: function(data) {
       console.log(data);
-      // console.log(data.fatturato);
-      // printFirstLine(data);
+      var database = data.fatturato.data;
+      console.log(database);
+      var ctx = document.getElementById('line').getContext('2d');
+      var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: getLabels(),
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(000, 128, 000)',
+                borderColor: 'rgb(0, 0, 0)',
+                data: database
+            }]
+        },
+    });
 
     },
     error: function() {
@@ -154,6 +174,40 @@ function getLineChart() {
   });
 };
 
-function printFirstLine() {
+function getPieChart(level) {
+  $.ajax({
+    url:"apiTre.php",
+    method:"GET",
+    data: {"level" : level},
+    success: function(data) {
+      console.log("Dati: " + data);
+  var fatPerAgent = data.fatturato_by_agent;
+  var type = fatPerAgent.type;
+  var dati = fatPerAgent.data;
+  var labels = Object.keys(dati);
+  var sales = Object.values(dati);
 
-}
+  var ctx = document.getElementById('pie').getContext('2d');
+  var myLineChart = new Chart(ctx, {
+    type: type,
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 69, 132)',
+            borderColor: 'rgb(200, 99, 132)',
+            data: sales,
+            backgroundColor: [
+            'rgba(255, 99, 132, 0.7)',
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 206, 86, 0.7)',
+            'rgba(75, 192, 192, 0.7)']
+        }]
+    },
+  });
+  },
+    error: function() {
+      alert("ERRORE");
+    }
+  })
+};
